@@ -1,0 +1,25 @@
+****************************************************************************************************
+React
+
+  React is a javaScript library that is used to produce html that is shown to a user in the web browser
+  componentes and views -> are snippets of javaScript code that produce html
+    first we create the component
+    then we insert it into the dom
+
+
+  ************************************************** 
+  React.DOM
+
+    import React from 'react';           // used to create and manage components sometimes with non web dev apps (this is used to transpile JSX to HTML??)
+    import ReactDOM from 'react-dom';    // this is used to manipulate the dom when working with browser web apps
+                                         
+    components need to be instanciated before they are rendered to the DOM
+      -> when rendering to the dom you do not render the actual component (or stateless function) you render an instance of the function or class
+         example : <App></App>
+         example : <App />      // if the component text is empty is can be self closed
+
+    ReactDOM.render(<App />, document.querySelector(".container"));    // renders the react component to the page
+
+
+react_coursework_notes_projects
+Various react and redux projects with coursework notes for future reference
