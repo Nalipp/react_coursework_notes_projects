@@ -1,6 +1,14 @@
 ****************************************************************************************************
 React
 
+  *introduction
+  *state
+  *Ajax
+
+
+****************************************************************************************************
+*introduction
+
   React is a javaScript library that is used to produce html that is shown to a user in the web browser
   componentes and views -> are snippets of javaScript code that produce html
     first we create the component
@@ -10,7 +18,7 @@ React
   ************************************************** 
   React.DOM
 
-    import React from 'react';           // used to create and manage components sometimes with non web dev apps (this is used to transpile JSX to HTML??)
+    import React from 'react';           // used to create and manage components sometimes with non web dev apps (this is also used to transpile JSX to HTML)
     import ReactDOM from 'react-dom';    // this is used to manipulate the dom when working with browser web apps
                                          
     components need to be instanciated before they are rendered to the DOM
@@ -20,6 +28,65 @@ React
 
     ReactDOM.render(<App />, document.querySelector(".container"));    // renders the react component to the page
 
+  **************************************************
+  class Componnets
 
-react_coursework_notes_projects
-Various react and redux projects with coursework notes for future reference
+    the class keyword comes from es6
+    a javascript object with properties and methods to it
+
+      class SearchBar extends React.Component {   // this allows the class to have access to the functionality of React.Component class
+        render() {                                // classes require the render method and they must return some jsx
+
+
+**************************************************************************************************** 
+*state
+
+  state is a plain javascript object that is used to record and react to user events
+  whenever a components state is changed it re-renders all of its elements and forces all of the children elements to re-render as well
+  state is initialized in the contsructor (functional components do not have state)
+
+  ************************************************** 
+  constructor function
+
+    is ran whenever an instance of the component is created
+    super(props) // React.Component extends from the Component library, super calls the Components own constructor function and passes it (props)
+  ************************************************** 
+
+  state
+
+    only in the constructor function do you manipulate the state directly, all other places we will use this.setState()
+    whenever state is updated the render function of the component is run and the dom is updated
+
+
+  ************************************************** 
+  controled components
+
+    are components that are controled by state
+    this allows us to easily populate the state of a value
+    this also makes it easier to get the current value of an element at any time (instead of jQuery where you have to find the value on the page)
+
+    example : 
+
+      <input
+        value={this.state.inputValue}                                    // the value displayed of the input box is actually comming from the state
+        onChange={e => this.setState({inputValue: e.target.value})}      // whenever a key is typed the state is being updated
+      />
+
+
+****************************************************************************************************
+*Ajax
+
+  downwards data flow -> data can't be pushed up so data must be provided at a point where all components that rely on the data are below the data point
+
+  ************************************************** 
+  lodash
+
+    one of the functionality of lodash is the ablitiy to throttle a function call using debounce
+
+    example :
+
+      $ npm install --save lodash
+      import _ from 'lodash';
+
+
+
