@@ -4,6 +4,7 @@ React
   *introduction
   *state
   *Ajax
+  *Redux
 
 
 ****************************************************************************************************
@@ -87,6 +88,94 @@ React
 
       $ npm install --save lodash
       import _ from 'lodash';
+
+
+
+****************************************************************************************************
+*Redux
+  
+  Redux vs React
+
+      Redux is a predictible state container for javaScript applications
+        it is where all the data in the app is contained in an app (including the current state)
+
+      React handles all the manipulations of the views 
+        its job is to translate the data onto the screen into something the user can view and interact with
+
+  Redux
+    we centralize all of the applications data into a single object (instead of collections used in backbone, flux..)
+      this single object is refered to as the state (application level state)
+      there is a distinction between component level state and redux (application level) state
+
+
+      ************************************************** 
+      reducers
+
+        Redux stores application level state in a sigle object.
+        A Reducer is a function that returns a piece of the applications state
+          since out application can have many different pieces of state we can have many different reducers
+
+          example : each reducer commonly has its own js file in src
+
+            src/reducers/reducer_books.js       
+            
+              this reducer(function) returns all the books from the application level state object
+              it is good practice to prepend the name of the js file with reducer_ because an application will commonly have multiple books.js files
+
+      ************************************************** 
+      react-redux
+
+        react and redux are completly seperate libraries
+        the react-redux library is used to connect the react and redux libraries,
+          it is capable of accessing the redux object that holds the state for the entire application
+
+
+      **************************************************
+      containers vs components
+
+        whenever there is a connection between a component and Redux the component becomes a container
+        a container does not export a class
+
+        the react-redux library has a method called connect that acceps a function and the components state as arguments
+        connect combineds these arguments to create a container
+          a container is just like a regular component but it is a smart component because it is aware of the state contained in Redux
+          the function that is passed as an argument is the glue between react and redux, it takes the state and maps it to props and returns an object
+
+          example :
+            function mapStateToProps(state) {
+              return {
+                books: state.books   // this has access to this.props.books
+              }
+            }
+        
+        think of a container as a promoted component
+        it is the same as a class component but it has direct access to the apps global state (managed by redux)
+        if a containers state ever changes it will instantly re-render
+
+        a container should be the most parent component that cares about a piece of state
+          if a higher parent dosen't need to use the state than it shouldn't have access to it, instead a child should be the container
+          only the parent most component that uses a paticular piece of state needs to be connected to Redux
+
+        react-redux 
+          a library that forms a bridge between react(views) and redux(application state)
+          containers allow you to take a react component and inject state into it
+
+        containers are also refered to as smart components (instead or dumb components)
+          -> the teachers explination of a dumb component is a component that does not have a dirrect connection to Redux
+             but previous instructor explained a dumb component as a component without state (a stateless function)????
+
+
+  containers, components and reducers should all have their own directory
+    containers have direct access to the applications state through Redux (the parent most component that needs access to a piece of state)
+    components (are dumb) and only have local state or are stateless functions
+    reducers are a function that returns a piece of state
+    
+
+
+
+
+
+
 
 
 
