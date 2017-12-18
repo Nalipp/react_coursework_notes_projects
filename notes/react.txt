@@ -169,7 +169,31 @@ React
     containers have direct access to the applications state through Redux (the parent most component that needs access to a piece of state)
     components (are dumb) and only have local state or are stateless functions
     reducers are a function that returns a piece of state
-    
+
+
+    ************************************************** 
+    actions and action creators
+
+      actions and actions creators allow you to change the state of the Redux object
+
+      actions can be triggered by
+        user events
+        form submitssions
+        ajax requests getting returned
+
+      an action creator is a function that returns an action (object of data)
+        this action flows through all of the reducers
+
+      example : 
+        user clicks a on a book item which triggers the creation of an action
+        the action object contains information about the selected book and sends it to all reducers inside the application
+        the reducers can choose (depending on the action) to return a different piece of state
+          this changes the application state which causes all of the components to re-render
+   
+        it is a common pattern to include a 'type' key in the action object that holds information about the type of action that took place
+        it is also common for reducers to have switch statements that respond to the different types 
+
+
 
 
 
