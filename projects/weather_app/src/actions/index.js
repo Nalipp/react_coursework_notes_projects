@@ -6,11 +6,12 @@ const ROOT_URL = `http://samples.openweathermap.org/data/2.5/forecast?&appid=${A
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
 export function fetchWeather(city) {
-  const url = `${ROOT_URL}&q=${city}us`;
-  const request = axios.get(url);
+  const url = `${ROOT_URL}&q=${city},us`;
+  console.log(url);
+  const request = axios.get(url); // request promise
 
   return {
     type: FETCH_WEATHER,
-    payload: request
+    payload: request     // before the request is attached to the payload 'react-promise' middleware will require the request promise to be returned
   }
 }
